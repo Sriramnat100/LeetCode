@@ -1,15 +1,13 @@
-strings = "dog"
-stringtwo = "racecar"
-stringthree = "car"
-
-["dog","racecar","car"]
+all_pos = []
+maxes = []
+strs = ["ab", "a"]
 
 #Finding all substrings 
 def string_checker(strings):
     temp = []
     for index in range(len(strings)):
         string_new = ""
-        for test in range(index):
+        for test in range(index + 1):
             string_new = string_new + strings[test]
             temp.append(string_new)
     #Removing duplicates
@@ -18,26 +16,20 @@ def string_checker(strings):
 
     return temp
 
-
-max1 = string_checker(strings)
-max2 = string_checker(stringtwo)
-max3 = string_checker(stringthree)
-
-
-
-def val_in_list(l1,l2,l3):
-    counter = []
-    for i in l1:
-        if i in l2 and i in l3:
-            counter.append(i)
-    for i in l2:
-        if i in l1 and i in l3:
-            counter.append(i)
-    for i in l3:
-        if i in l1 and i in l2:
-            counter.append(i)
-    return max(counter)
+#Made a list of the possible strings
+for i in strs:
+    all_pos.append(string_checker(i))
+all_pos = [item for sublist in all_pos for item in sublist]
 
 
 
-print(val_in_list(max1, max2, max3))
+#Check how many times each sub appears
+
+for sub in all_pos:
+    if all_pos.count(sub) == len(strs):
+        maxes.append(sub)
+
+print(max(maxes))
+
+
+

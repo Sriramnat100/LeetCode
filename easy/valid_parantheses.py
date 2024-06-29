@@ -1,13 +1,28 @@
 s = "()[]{}"
+s = list(s)
 
-for i in range(len(s)):
-    if i == len(s)-1:
-        break
+stack = []
+hash_map = {"(": ")", 
+           "{": "}", 
+           "[": "]"}
 
-    if (s[i] == "(" and s[i+1] != ")") or (s[i] == ")" and s[i-1] != "("):
-        print("Nope")
-    elif (s[i] == "[" and s[i+1] != "]") or (s[i] == "]" and s[i-1] != "["):
-        print("Nope")
-    elif (s[i] == "{" and s[i+1] != "}") or (s[i] == "}" and s[i-1] != "{"):
-        print("Nope")
+
+for count, i in enumerate(s):
+    if i in hash_map:
+        stack.append(i)
+
+    elif i in hash_map.values():
+        n = stack[-1]
+        if hash_map[n] == i:
+            stack.pop(-1)
+
+        else:
+            print("failed")
+
+print(s)
+
+
     
+
+
+              
